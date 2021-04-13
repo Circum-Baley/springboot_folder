@@ -11,8 +11,6 @@ public class Motor {
 	private Integer modelo;
 	
 
-
-
 	public String getMarca() {
 		return marca;
 	}

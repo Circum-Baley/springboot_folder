@@ -7,13 +7,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AreaCalculatorService {
 	@Autowired
-	private List<Figure> figures;
+	private List <Figure> figures;
 	public double calcArea() {
-		double area=0;
+		double area = 0;
 		for (Figure figure : figures) {
-			area=figure.calcularArea();
+			area = figure.calcularArea();
 		}
 		return area;
 	}
-
 }

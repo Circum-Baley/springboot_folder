@@ -5,12 +5,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Scope("prototype")
-public class EjemploScopeService {
-
-	
-	
+public class EjemploScopeService {	
 	// No entendi lo de prototype
-	
-
-
 }

@@ -1,21 +1,26 @@
 package com.ejemplo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.aop.TargetObject;
+
 //@Configuration
 @SpringBootApplication
 // Ruta donde se encuentra el bean ---
-@ComponentScan("com.lifecycle")
-@ComponentScan("com.lifecycle.lazy")
+//@ComponentScan("com.lifecycle")
+@ComponentScan("com.aop")
 @EnableAutoConfiguration
 public class DependencyInyectionApplication {
 	
-//	private static final Logger log = LoggerFactory.getLogger(DependencyInyectionApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(DependencyInyectionApplication.class);
 	@Bean
 	public String getApplicationName() {
 		return "Circum Baley";
@@ -54,6 +59,9 @@ public class DependencyInyectionApplication {
 //		log.info("{}",expression.getValue());
 //		LifeCycleBean bean = context.getBean(LifeCycleBean.class);
 		
+		TargetObject to = context.getBean(TargetObject.class);
+		to.hello("method called from CLASS TargetObject.java and executive AT MAIN.JAVA " );
+		to.foo();
 		
 	}
 }

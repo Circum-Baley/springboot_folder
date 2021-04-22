@@ -61,7 +61,7 @@ public class DependencyInyectionApplication {
 		
 		TargetObject to = context.getBean(TargetObject.class);
 		to.hello("method called from CLASS TargetObject.java and executive AT MAIN.JAVA " );
-		to.foo();
+//		to.foo();
 		
 	}
 }

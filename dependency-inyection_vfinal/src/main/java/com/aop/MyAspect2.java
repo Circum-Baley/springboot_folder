@@ -1,4 +1,5 @@
 package com.aop;
+
 import java.lang.reflect.Modifier;
 
 import org.aspectj.lang.JoinPoint;
@@ -11,15 +12,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-@Order(2)
-public class MyAspect {
-	
-	
-	private static final Logger log = LoggerFactory.getLogger(MyAspect.class);
-	@Before("PointCutExample.TargetObjectMethod())")
+@Order(1)
+public class MyAspect2 {
+	private static final Logger log = LoggerFactory.getLogger(MyAspect2.class);
+	@Before("PointCutExample.TargetObjectMethod()")
 //	@Before("execution(* com.aop.TargetObject.hello(..))")
 	public void before(JoinPoint joinpoint) {
-		log.info("-------------My Aspect ----------");
+		log.info("-------------My Aspect 2 ----------");
 		log.info("Method Name {} ",joinpoint.getSignature().getName());
 		log.info("Object Type {} ",joinpoint.getSignature().getDeclaringType());
 		log.info("Object Type Name {} ",joinpoint.getSignature().getDeclaringTypeName());
@@ -28,4 +27,5 @@ public class MyAspect {
 		log.info("Is public  {}",Modifier.isPublic(joinpoint.getSignature().getModifiers()));
 		log.info("CLASS MYASPECT");
 	}
+
 }

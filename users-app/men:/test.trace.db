@@ -1,0 +1,27 @@
+2021-05-05 02:09:07 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "role" not found; SQL statement:
+select role0_.id as id1_2_, role0_.name as name2_2_ from role role0_ [42102-200]
+2021-05-05 02:09:08 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "role" not found; SQL statement:
+select role0_.id as id1_2_, role0_.name as name2_2_ from role role0_ [42102-200]
+2021-05-05 02:09:08 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "role" not found; SQL statement:
+select role0_.id as id1_2_, role0_.name as name2_2_ from role role0_ [42102-200]
+2021-05-05 02:09:08 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "role" not found; SQL statement:
+select role0_.id as id1_2_, role0_.name as name2_2_ from role role0_ [42102-200]
+2021-05-05 02:09:09 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "role" not found; SQL statement:
+select role0_.id as id1_2_, role0_.name as name2_2_ from role role0_ [42102-200]
+2021-05-05 02:09:09 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "role" not found; SQL statement:
+select role0_.id as id1_2_, role0_.name as name2_2_ from role role0_ [42102-200]
+2021-05-05 02:09:13 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "role" not found; SQL statement:
+select role0_.id as id1_2_, role0_.name as name2_2_ from role role0_ [42102-200]
+2021-05-05 02:09:48 jdbc[33]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "roles" not found; SQL statement:
+select role0_.id as id1_2_, role0_.name as name2_2_ from roles role0_ [42102-200]
+2021-05-05 02:11:31 jdbc[53]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "role" not found; SQL statement:
+select role0_.id as id1_2_, role0_.name as name2_2_ from role role0_ [42102-200]

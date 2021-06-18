@@ -1,81 +1,55 @@
 package com.users.services;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.github.javafaker.Faker;
-import com.users.model.User;
+import com.users.entities.User;
+import com.users.repository.UserRepository;
 
-@Service 
-public class UserService {
+@Service
+public class UserService{
+
+	private static final Logger log = LoggerFactory.getLogger(User.class);
 	@Autowired
-	private Faker faker;
+	private UserRepository userRepository;
 	
-	private List<User> users= new ArrayList<>();
+	public List<User> getUsers(){
+		return userRepository.findAll();
+	}
 	
-	@PostConstruct
-	public void init() {
-		for(int i=0; i<100;i++) {
-			users.add(new User(faker.funnyName().name(),faker.name().username(),faker.dragonBall().character()));
+	public User getUserById(Integer userId) {
+		return userRepository.findById(userId).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,String.format("User %d not foudenchion", userId)));
+	}
+	
+	@CacheEvict("users")
+	public void deleteUserByUsername(String username) {
+		User user = getUserByUsername(username);
+		userRepository.delete(user);
+	}
+	
+	@Cacheable("users")
+	public User getUserByUsername(String username) {
+		log.info("Obteniendo datos del usuario {} ",username);
+		try {
+			//hace que funcione o no en el cliente
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-	 	
+		return userRepository.findByUsername(username).orElseThrow(
+				()->new ResponseStatusException(HttpStatus.NOT_FOUND,String.format("User %s not foudenchion", username)));
 	}
-
-	public List<User> getUsers(String startWith) {
-		if(startWith!=null) {
-			return users.stream().filter(u->u.getUsername().startsWith(startWith)).collect(Collectors.toList());
-		}else {
-			
-		}
-		return users;
-	} 
-	public User getUserByUserName(String username) {
-		return users.stream().filter(u->u.getUsername().equals(username)).findAny()
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-						String.format("User %s not found", username)));
+	public User getUserByUsernameAndPassword(String username,String password) {
+		return userRepository.findByUsernameAndPassword(username,password).orElseThrow(
+				()->new ResponseStatusException(HttpStatus.NOT_FOUND,String.format("User %d not foudenchion", username)));
 	}
-	public User createUser(User user) {
-		if(users.stream().anyMatch(u -> u.getUsername().equals(user.getUsername()))) {
-			throw new ResponseStatusException(HttpStatus.CONFLICT, String.format(" User %s already EXISTS ",user.getUsername()));
-		}
-		users.add(user);
-		return user;
-		
-	}
-	
-	public User userUpdate(User user,String username) {
-		User userToBeUpdated = getUserByUserName(username);
-		userToBeUpdated.setNickName(user.getNickName());
-		userToBeUpdated.setPassword(user.getPassword());
-		return userToBeUpdated;
-	}
-	
-	public void deleteUser(String username ) {
-		User userByUsername = getUserByUserName(username);
-		users.remove(userByUsername);
-	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
+

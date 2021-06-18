@@ -1,0 +1,6 @@
+2021-05-05 02:20:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "rol" not found; SQL statement:
+select role0_.id as id1_2_, role0_.name as name2_2_ from rol role0_ [42102-200]
+2021-05-05 02:20:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "rol" not found; SQL statement:
+select role0_.id as id1_2_, role0_.name as name2_2_ from rol role0_ [42102-200]

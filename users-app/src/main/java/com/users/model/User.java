@@ -1,15 +1,10 @@
 package com.users.model;
 
-import org.springframework.stereotype.Component;
-
-
 public class User {
 	private String username;
 	private String nickName;
 	private String password;
-	
-	public User() {
-	}
+
 	public User(String username, String nickName, String password) {
 		this.username = username;
 		this.nickName = nickName;

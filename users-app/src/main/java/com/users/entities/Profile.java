@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,17 +18,32 @@ public class Profile {
 
 	@Id
 	@Column(name="id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue  (strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(name="first_name")
-	private Integer firstName;
+	private String firstName;
 	
 	@Column(name="last_name")
-	private Integer lastName;
+	private String lastName;
 	
 	@Column(name="birth_date")
 	private Date birthDate;
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@OneToOne
+//	La siguiente linea de codigo ingresa a traves de la columna de referencia "id""profile_id" 
+//	desde el llave foranea al Atributo 
+	@JoinColumn(name="user_id",referencedColumnName = "id")
+	private User user;
+
 
 	public Integer getId() {
 		return id;
@@ -36,19 +53,19 @@ public class Profile {
 		this.id = id;
 	}
 
-	public Integer getFirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setFirstName(Integer firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	public Integer getLastName() {
+	public String getLastName() {
 		return lastName;
 	}
 
-	public void setLastName(Integer lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
